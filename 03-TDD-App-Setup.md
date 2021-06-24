@@ -52,12 +52,23 @@ The division of a test method is referred to as __given/when/then__:
 - The third part, or __then__, is testing the expected state after the when.
 
 ## Structure of XCTestCase subclass
-### Setting up a test
+XCTest is in the family of test frameworks derived from XUnit. Like so many good object-oriented things, XUnit comes from Smalltalk (where it was SUnit). It's an architecture fro running unit tests. The "X" is a stand--in for the programming language. For example, in Java it's JUnit, and in Objective-C it's OCUnit. In Swift, it's just XCTest.
+
+With XUnit, tests are methods whose name starts with `test` that are part of a __test case class__. Test cases are grouped together is a test suite. Test runner is a program that knows how to find test cases in the suite, run them, and gather and display results. It's Xcode's test runner that is executed twhen you run the test phase of a scheme.
+
+Each test case class has a `setUp()` and a `tearDown()` method that is used to set up global and class state before and after each test method is run.
+
+- `XCTestCase` subclass lifecycles aremanaged outside the test execution, an any class-level state is persisted between test methods.
+- The order in which test classes and test methods are run is not explicitly defined and cannot be relied upon.
+
+Therefore, it's important to use `setUp()` and `tearDown()` to clean up and make sure state is in a known position before each test.
+
 ### Tearing down a test
+A related gotcha with XCTestCases is it won't be deinitialized until all the tests are complete. That means its important to clean up a test's state after it's run to control memory usage, clean up the filesystem, or otherwise put things back the way it was found.
 
 ## Your next set of tests
 ### Test target organization
-As you continue to add test cases when building the app, it will become hard to find and maintain unorganized tests. Unit tests are first class code and should have the same level of scrutiny as production app code which means keeping them organized
+As you continue to add test cases when building the app, it will become hard to find and maintain unorganized tests. Unit tests are first class code and should have the same level of scrutiny as production app code which means keeping them organized.
 
 We use the following organization:
 ```
@@ -73,6 +84,27 @@ Test Target
     ⌊ Helper Extensions
 ```
 
-- __Cases__: 
-- __Mocks__: 
-- __Helper classes and extensions__: 
+- __Cases__: The group for the test cases, and these are organized in a parallel structure to the app code. This makes it really easy to navigate between the app class and its tests.
+- __Mocks__: For code that stands in for functional ocde, allowing for separating functionality from implementation. For example, network requests are commonly mocked.
+- __Helper classes and extensions__: For additional code that you'll write to make the test code easier to write, but don't directly test or mock functionality. 
+
+## Using @testable import
+Xcode provides a way to expose data types for testing without making them available for general use. That’s through the `@testable` attribute.
+```swift
+@testable import FitNess
+```
+This makes symbols that are `open`, `public`, and `internal` available to the test case.
+
+### Testing UI updates
+TDD best practice is to have one assert per test. With well-named test methods, when the test fails, you'll know exactly where the issue is, because there is no ambiguity between multiple conditions.
+Another good practice is instead of hard-coding the string usage of the variables is preferred. By using the app's value, the assert is testing behavior and not a specific value. If the string changes or gets localized, the test won't have to change to accomodate that.
+
+## Testing initial conditions
+The call to `viewDidLoad()` is needed because the `sut` is not actually loaded from the `xib` and put into a view hierarchy, so the view lifecycle methods do not get called.
+
+## Key points
+- TDD is about writing tests before writing app logic.
+- Use logical statements to drive what should be tested.
+- Each test should fail upon its first execution. Not compiling counts as a failure.
+- Use tests to guide refactoring code for readability and performance.
+- Good naming conventions make it easier to navigate and find issues.
