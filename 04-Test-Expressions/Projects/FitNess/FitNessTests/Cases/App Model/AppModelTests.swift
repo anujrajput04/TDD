@@ -70,4 +70,15 @@ class AppModelTests: XCTestCase {
         // then
         XCTAssertEqual(sut.appState, .notStarted)
     }
+    
+    func testDataModel_whenRestarted_goalIsNil() {
+        // given
+        givenInProgress()
+        
+        // when
+        sut.restart()
+        
+        // then
+        XCTAssertNil(sut.dataModel.goal)
+    }
 }
