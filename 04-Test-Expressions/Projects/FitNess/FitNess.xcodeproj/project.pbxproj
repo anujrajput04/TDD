@@ -18,6 +18,9 @@
 		0A80ED3B21CB2A14000B04E3 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A80ED3A21CB2A14000B04E3 /* DataModel.swift */; };
 		0A9EB50B21C072F00062B66E /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9EB50A21C072F00062B66E /* AppModel.swift */; };
 		0AA5E735219B9B4600B7A0D0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA5E734219B9B4600B7A0D0 /* AppState.swift */; };
+		2F723CF52684B688001C9FD3 /* DataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F723CF42684B688001C9FD3 /* DataModelTests.swift */; };
+		2FDF102C2689E77800ACC317 /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF102B2689E77800ACC317 /* ViewControllers.swift */; };
+		2FDF102F2689E7E300ACC317 /* RootViewController+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF102E2689E7E300ACC317 /* RootViewController+Tests.swift */; };
 		5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */; };
 		D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F20A1F4A9144005CD714 /* Assets.xcassets */; };
 		D2A5F2211F4A96D0005CD714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5F2201F4A96D0005CD714 /* AppDelegate.swift */; };
@@ -47,6 +50,9 @@
 		0A80ED3A21CB2A14000B04E3 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		0A9EB50A21C072F00062B66E /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		0AA5E734219B9B4600B7A0D0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		2F723CF42684B688001C9FD3 /* DataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelTests.swift; sourceTree = "<group>"; };
+		2FDF102B2689E77800ACC317 /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
+		2FDF102E2689E7E300ACC317 /* RootViewController+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RootViewController+Tests.swift"; sourceTree = "<group>"; };
 		5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* FitNess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F20A1F4A9144005CD714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +83,8 @@
 			children = (
 				0A21C7D921C6BF8B00169D8B /* Info.plist */,
 				0A21C7E321C70C5800169D8B /* Cases */,
+				2FDF102A2689E75B00ACC317 /* Test Classes */,
+				2FDF102D2689E7C900ACC317 /* Test Extensions */,
 			);
 			path = FitNessTests;
 			sourceTree = "<group>";
@@ -85,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				0A21C7E421C70C6B00169D8B /* App Model */,
-				0A80ED3D21CB2A4C000B04E3 /* Data Model */,
+				2F723CF62684B68E001C9FD3 /* Data Model */,
 				0A21C7E521C70C7400169D8B /* UI Layer */,
 			);
 			path = Cases;
@@ -134,13 +142,6 @@
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
-		0A80ED3D21CB2A4C000B04E3 /* Data Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Data Model";
-			sourceTree = "<group>";
-		};
 		0A9EB50C21C072F50062B66E /* App Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +159,30 @@
 				0A1BDA0C218E541E00804262 /* StepCountController.swift */,
 			);
 			path = "UI Layer";
+			sourceTree = "<group>";
+		};
+		2F723CF62684B68E001C9FD3 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				2F723CF42684B688001C9FD3 /* DataModelTests.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		2FDF102A2689E75B00ACC317 /* Test Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2FDF102B2689E77800ACC317 /* ViewControllers.swift */,
+			);
+			path = "Test Classes";
+			sourceTree = "<group>";
+		};
+		2FDF102D2689E7C900ACC317 /* Test Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2FDF102E2689E7E300ACC317 /* RootViewController+Tests.swift */,
+			);
+			path = "Test Extensions";
 			sourceTree = "<group>";
 		};
 		D2A5F1F71F4A9143005CD714 = {
@@ -298,7 +323,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FDF102F2689E7E300ACC317 /* RootViewController+Tests.swift in Sources */,
+				2F723CF52684B688001C9FD3 /* DataModelTests.swift in Sources */,
 				0A21C7E021C6CF1200169D8B /* AppModelTests.swift in Sources */,
+				2FDF102C2689E77800ACC317 /* ViewControllers.swift in Sources */,
 				0A21C7E221C70AE400169D8B /* StepCountControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +364,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FitNessTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -357,6 +386,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = FitNessTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -488,10 +518,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6P96AE4Y52;
 				INFOPLIST_FILE = FitNess/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.FitNess;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anujrajput.FitNess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -504,10 +534,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6P96AE4Y52;
 				INFOPLIST_FILE = FitNess/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.razeware.FitNess;
+				PRODUCT_BUNDLE_IDENTIFIER = com.anujrajput.FitNess;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
