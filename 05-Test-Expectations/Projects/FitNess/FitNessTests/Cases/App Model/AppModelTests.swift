@@ -11,6 +11,7 @@ class AppModelTests: XCTestCase {
     }
     
     override func tearDown() {
+        sut.stateChangedCallback = nil
         sut = nil
         super.tearDown()
     }
@@ -147,4 +148,29 @@ class AppModelTests: XCTestCase {
     }
     
     // MARK: - State Changes
+    
+    func testAppModel_whenStateChanges_executesCallback() {
+        // given
+        givenInProgress()
+        var observedState = AppState.notStarted
+        
+        // 1
+        /// `expectation(description:)` is an `XCTestCase` method that creates an `XCTestExpectation` object. The `description` helps identify a failure in the test logs.
+        let expected = expectation(description: "callback happened")
+        sut.stateChangedCallback = { model in
+            observedState = model.appState
+            // 2
+            /// `fulfill()` is called on the expectation to indicate it has been fulfilled - specifically, the callback has occured. Here `stateChangeCallback` will trigger on `sut` when a state change occurs.
+            expected.fulfill()
+        }
+        
+        // when
+        sut.pause()
+        
+        // then
+        // 3
+        /// `wait(for:timeout:)` causes the test runner to pause until all expectations are fulfilled or the `timeout` time (in seconds) passes. The assertion will not be called until the wait completes
+        wait(for: [expected], timeout: 1)
+        XCTAssertEqual(observedState, .paused)
+    }
 }

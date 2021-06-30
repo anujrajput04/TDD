@@ -6,7 +6,13 @@ class AppModel {
     
     let dataModel = DataModel()
     
-    private(set) var appState: AppState = .notStarted
+    private(set) var appState: AppState = .notStarted {
+        didSet {
+            stateChangedCallback?(self)
+        }
+    }
+    
+    var stateChangedCallback: ((AppModel) -> ())?
     
     // MARK: - App Lifecycle
     func start() throws {
