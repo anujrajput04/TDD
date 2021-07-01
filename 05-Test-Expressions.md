@@ -19,3 +19,8 @@ In order to react to an asynchronous event, the code needs a way to listen for a
 
 ### Testing for true asynchronity
 Stopping execution in the debugger doesn't pause the `wait` timeout. When the debugger pauses at a breakpoint and you explore for the logic error, be mindful that the test will probably fail due to timeout. Simply disable or remove the breakpoint and re-run once the issue is corrected.
+
+## Waiting for notifications
+### Building the alert center
+`expectation(forNotification:object:handler)` creates an expectation that fulfills when a notification posts.
+It's not generally a good idea to use a `wait` as the test assertion. It's better to use an explicit assert call. `wait` only tests that an expectation was fulfilled and does not make any claims about the app's logic.
