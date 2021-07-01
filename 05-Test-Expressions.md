@@ -16,3 +16,6 @@ In order to react to an asynchronous event, the code needs a way to listen for a
 
 2. `fulfill()` is called on the expectation to indicate it has been fulfilled - specifically, the callback has occured. Here `stateChangeCallback` will trigger on `sut` when a state change occurs.
 3. `wait(for:timeout:)` causes the test runner to pause until all expectations are fulfilled or the `timeout` time (in seconds) passes. The assertion will not be called until the wait completes.
+
+### Testing for true asynchronity
+Stopping execution in the debugger doesn't pause the `wait` timeout. When the debugger pauses at a breakpoint and you explore for the logic error, be mindful that the test will probably fail due to timeout. Simply disable or remove the breakpoint and re-run once the issue is corrected.
