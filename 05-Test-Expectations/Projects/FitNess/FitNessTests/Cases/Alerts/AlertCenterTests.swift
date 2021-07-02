@@ -26,4 +26,19 @@ class AlertCenterTests: XCTestCase {
         // then
         wait(for: [expectation], timeout: 1)
     }
+    
+    func testPostingTwoAlerts_generatesTwoNotifications() {
+        // given
+        let expectation = expectation(forNotification: AlertNotification.name, object: sut, handler: nil)
+        expectation.expectedFulfillmentCount = 2
+        let alert1 = Alert("this is the first alert")
+        let alert2 = Alert("this is the second alert")
+        
+        // when
+        sut.postAlert(alert: alert1)
+        sut.postAlert(alert: alert2)
+        
+        // then
+        wait(for: [expectation], timeout: 1)
+    }
 }

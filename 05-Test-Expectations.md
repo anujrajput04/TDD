@@ -24,3 +24,6 @@ Stopping execution in the debugger doesn't pause the `wait` timeout. When the de
 ### Building the alert center
 `expectation(forNotification:object:handler)` creates an expectation that fulfills when a notification posts.
 It's not generally a good idea to use a `wait` as the test assertion. It's better to use an explicit assert call. `wait` only tests that an expectation was fulfilled and does not make any claims about the app's logic.
+
+### Waiting for multiple events
+You can use expectation's `expectedFulfullmentCount` property to refine the fulfillment condition. Setting `expectedFulfillmentCount` to two means that the expectation won't be met until `fulfill()` has been called twice before the timeout..
