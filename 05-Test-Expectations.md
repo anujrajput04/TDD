@@ -1,4 +1,4 @@
-#  Test Expressions
+#  Test Expectations
 
 `XCTestExpectation` is the tool for testing things that happen outside the direct flow.
 - General test expectations
