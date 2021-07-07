@@ -41,4 +41,19 @@ class AlertCenterTests: XCTestCase {
         // then
         wait(for: [expectation], timeout: 1)
     }
+    
+    func testPostDouble_generatesOnlyOneNotification() {
+        // given
+        let exp = expectation(forNotification: AlertNotification.name, object: sut, handler: nil)
+        exp.expectedFulfillmentCount = 2
+        exp.isInverted = true
+        let alert = Alert("this is an alert")
+        
+        // when
+        sut.postAlert(alert: alert)
+        sut.postAlert(alert: alert)
+        
+        // then
+        wait(for: [exp], timeout: 1)
+    }
 }

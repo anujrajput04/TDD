@@ -27,3 +27,11 @@ It's not generally a good idea to use a `wait` as the test assertion. It's bette
 
 ### Waiting for multiple events
 You can use expectation's `expectedFulfullmentCount` property to refine the fulfillment condition. Setting `expectedFulfillmentCount` to two means that the expectation won't be met until `fulfill()` has been called twice before the timeout..
+
+### Expecting something not to happen
+Good test suites not only test when things happen according to plan, but also check that certain side effects do not occur. One of the things the app should not do is spam the user with alerts.
+
+```swift
+exp.isInverted = true
+```
+When an expectation is inverted it indicates this test fails if the expectation is fulfilled and succeeds if the wait times out. This test will fail if two notifications aretriggered by the two alerts.
