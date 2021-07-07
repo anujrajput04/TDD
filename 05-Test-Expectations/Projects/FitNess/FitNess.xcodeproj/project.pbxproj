@@ -29,6 +29,7 @@
 		0AEC71EC21D6EDCD00E836EB /* DataModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC71EB21D6EDCD00E836EB /* DataModel+Tests.swift */; };
 		0AEC71F021D6EE8A00E836EB /* AppModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC71EF21D6EE8A00E836EB /* AppModel+Tests.swift */; };
 		2FDF1031268C9A6100ACC317 /* ButtonObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF1030268C9A6100ACC317 /* ButtonObserver.swift */; };
+		2FDF10352695B40800ACC317 /* RootViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF10342695B40800ACC317 /* RootViewControllerTests.swift */; };
 		5C2901831F8F6DE700803663 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */; };
 		D2A5F20B1F4A9144005CD714 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2A5F20A1F4A9144005CD714 /* Assets.xcassets */; };
 		D2A5F2211F4A96D0005CD714 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5F2201F4A96D0005CD714 /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		0AEC71EB21D6EDCD00E836EB /* DataModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+Tests.swift"; sourceTree = "<group>"; };
 		0AEC71EF21D6EE8A00E836EB /* AppModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Tests.swift"; sourceTree = "<group>"; };
 		2FDF1030268C9A6100ACC317 /* ButtonObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonObserver.swift; sourceTree = "<group>"; };
+		2FDF10342695B40800ACC317 /* RootViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerTests.swift; sourceTree = "<group>"; };
 		5C2901821F8F6DE700803663 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D2A5F2001F4A9144005CD714 /* FitNess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitNess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A5F20A1F4A9144005CD714 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		0A4E7CE4220773F6000C3B93 /* App Layer */ = {
 			isa = PBXGroup;
 			children = (
+				2FDF10342695B40800ACC317 /* RootViewControllerTests.swift */,
 			);
 			path = "App Layer";
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				0AB709B9220CDFAE005C0AB0 /* AlertCenterTests.swift in Sources */,
 				0A2EC8E221D41D030091A995 /* ViewControllers.swift in Sources */,
 				2FDF1031268C9A6100ACC317 /* ButtonObserver.swift in Sources */,
+				2FDF10352695B40800ACC317 /* RootViewControllerTests.swift in Sources */,
 				0A21C7E221C70AE400169D8B /* StepCountControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
