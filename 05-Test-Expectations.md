@@ -35,3 +35,6 @@ Good test suites not only test when things happen according to plan, but also ch
 exp.isInverted = true
 ```
 When an expectation is inverted it indicates this test fails if the expectation is fulfilled and succeeds if the wait times out. This test will fail if two notifications aretriggered by the two alerts.
+
+## Getting specific about notifications
+While you should strive for a single assert per test, it's oK to have more than one if they both confirm the same truth.
