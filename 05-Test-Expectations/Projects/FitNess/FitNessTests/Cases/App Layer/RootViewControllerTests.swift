@@ -8,10 +8,12 @@ class RootViewControllerTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = loadRootViewController()
+        sut.reset()
     }
 
     override func tearDownWithError() throws {
         sut = nil
+        AlertCenter.instance.clearAlerts()
         try super.tearDownWithError()
     }
     

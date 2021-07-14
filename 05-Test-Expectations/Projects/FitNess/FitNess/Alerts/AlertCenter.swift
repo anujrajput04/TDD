@@ -4,6 +4,10 @@ class AlertCenter {
     static var instance = AlertCenter()
     private var alertQueue: [Alert] = []
     
+    var alertCount: Int {
+        alertQueue.count
+    }
+    
     init(center: NotificationCenter = .default) {
         self.notificationCenter = center
     }
@@ -17,6 +21,12 @@ class AlertCenter {
         
         let notification = Notification(name: AlertNotification.name, object: self)
         notificationCenter.post(notification)
+    }
+    
+    // MARK: - Alert Handling
+    
+    func clearAlerts() {
+        alertQueue.removeAll()
     }
 }
 

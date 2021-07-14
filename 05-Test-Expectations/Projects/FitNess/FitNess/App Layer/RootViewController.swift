@@ -9,7 +9,7 @@ class RootViewController: UIViewController {
         reset()
         
         AlertCenter.listenForAlerts { center in
-            self.alertContainer.isHidden = false
+            self.alertContainer.isHidden = center.alertCount == 0
         }
     }
     
