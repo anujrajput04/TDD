@@ -12,6 +12,7 @@ class DataModelTests: XCTestCase {
     
     override func tearDown() {
         sut = nil
+        AlertCenter.instance.clearAlerts()
         super.tearDown()
     }
     
@@ -119,5 +120,63 @@ class DataModelTests: XCTestCase {
         
         // then
         XCTAssertTrue(sut.caught)
+    }
+    
+    // MARK: - Alerts
+    
+    func testWhenStepsHit25Percent_milestoneNotificationGenerated() {
+        // given
+        sut.goal = 400
+        let exp = expectation(forNotification: AlertNotification.name, object: nil) { notification in
+            notification.alert == Alert.milestone25Percent
+        }
+        
+        // when
+        sut.steps = 100
+        
+        // then
+        wait(for: [exp], timeout: 1)
+    }
+    
+    func testWhenStepsHit50Percent_milestoneNotificationGenerated() {
+        // given
+        sut.goal = 400
+        let exp = expectation(forNotification: AlertNotification.name, object: nil) { notification in
+            notification.alert == Alert.milestone50Percent
+        }
+        
+        // when
+        sut.steps = 200
+        
+        // then
+        wait(for: [exp], timeout: 1)
+    }
+    
+    func testWhenStepsHit75Percent_milestoneNotificationGenerated() {
+        // given
+        sut.goal = 400
+        let exp = expectation(forNotification: AlertNotification.name, object: nil) { notification in
+            notification.alert == Alert.milestone75Percent
+        }
+        
+        // when
+        sut.steps = 300
+        
+        // then
+        wait(for: [exp], timeout: 1)
+    }
+    
+    func testWhenStepsHit100Percent_milestoneNotificationGenerated() {
+        // given
+        sut.goal = 400
+        let exp = expectation(forNotification: AlertNotification.name, object: nil) { notification in
+            notification.alert == Alert.goalComplete
+        }
+        
+        // when
+        sut.steps = 400
+        
+        // then
+        wait(for: [exp], timeout: 1)
     }
 }
