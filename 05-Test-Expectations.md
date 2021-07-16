@@ -38,3 +38,9 @@ When an expectation is inverted it indicates this test fails if the expectation 
 
 ## Getting specific about notifications
 While you should strive for a single assert per test, it's oK to have more than one if they both confirm the same truth.
+
+## Driving alerts from the data model
+### Testing for multiple expectations
+Using `wait(for:timeout:)` with an array of just one expectation. Array is useful to provide multiple expextations and `wait` for al of them to be fulfilled.
+`enforceOrder` parameter is an optional paramter which makes sure that not only all the expectations are fulfilled but they happen in order specified in the array.
+The ordering check allows for sophisticated tests. eg, you could use this when writing a test for a multi-step process like image filtering or a network login that requires a multiple API call. These testst not only ensure all the steps happen in the necessary order in production code, but also validate that your test code isn't going through a different flow than expected. 

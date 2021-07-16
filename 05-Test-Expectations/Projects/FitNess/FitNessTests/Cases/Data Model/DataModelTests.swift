@@ -24,6 +24,13 @@ class DataModelTests: XCTestCase {
         sut.nessie.distance = 50
     }
     
+    func givenExpectationForNotification(alert: Alert) -> XCTestExpectation {
+        let exp = expectation(forNotification: AlertNotification.name, object: nil) { notification in
+            notification.alert == alert
+        }
+        return exp
+    }
+    
     // MARK: - Lifecycle
     func testModel_whenRestarted_goalIsUnset() {
         // given
@@ -127,9 +134,7 @@ class DataModelTests: XCTestCase {
     func testWhenStepsHit25Percent_milestoneNotificationGenerated() {
         // given
         sut.goal = 400
-        let exp = expectation(forNotification: AlertNotification.name, object: nil) { notification in
-            notification.alert == Alert.milestone25Percent
-        }
+        let exp = givenExpectationForNotification(alert: .milestone25Percent)
         
         // when
         sut.steps = 100
@@ -141,9 +146,7 @@ class DataModelTests: XCTestCase {
     func testWhenStepsHit50Percent_milestoneNotificationGenerated() {
         // given
         sut.goal = 400
-        let exp = expectation(forNotification: AlertNotification.name, object: nil) { notification in
-            notification.alert == Alert.milestone50Percent
-        }
+        let exp = givenExpectationForNotification(alert: .milestone50Percent)
         
         // when
         sut.steps = 200
@@ -155,9 +158,7 @@ class DataModelTests: XCTestCase {
     func testWhenStepsHit75Percent_milestoneNotificationGenerated() {
         // given
         sut.goal = 400
-        let exp = expectation(forNotification: AlertNotification.name, object: nil) { notification in
-            notification.alert == Alert.milestone75Percent
-        }
+        let exp = givenExpectationForNotification(alert: .milestone75Percent)
         
         // when
         sut.steps = 300
@@ -169,14 +170,29 @@ class DataModelTests: XCTestCase {
     func testWhenStepsHit100Percent_milestoneNotificationGenerated() {
         // given
         sut.goal = 400
-        let exp = expectation(forNotification: AlertNotification.name, object: nil) { notification in
-            notification.alert == Alert.goalComplete
-        }
+        let exp = givenExpectationForNotification(alert: .goalComplete)
         
         // when
         sut.steps = 400
         
         // then
         wait(for: [exp], timeout: 1)
+    }
+    
+    func testWhenGoalReached_allMilestoneNotificationsSent() {
+        // given
+        sut.goal = 400
+        let expectations = [
+            givenExpectationForNotification(alert: .milestone25Percent),
+            givenExpectationForNotification(alert: .milestone50Percent),
+            givenExpectationForNotification(alert: .milestone75Percent),
+            givenExpectationForNotification(alert: .goalComplete)
+        ]
+        
+        // when
+        sut.steps = 400
+        
+        // then
+        wait(for: expectations, timeout: 1, enforceOrder: true)
     }
 }
