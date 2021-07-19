@@ -44,3 +44,7 @@ While you should strive for a single assert per test, it's oK to have more than 
 Using `wait(for:timeout:)` with an array of just one expectation. Array is useful to provide multiple expextations and `wait` for al of them to be fulfilled.
 `enforceOrder` parameter is an optional paramter which makes sure that not only all the expectations are fulfilled but they happen in order specified in the array.
 The ordering check allows for sophisticated tests. eg, you could use this when writing a test for a multi-step process like image filtering or a network login that requires a multiple API call. These testst not only ensure all the steps happen in the necessary order in production code, but also validate that your test code isn't going through a different flow than expected. 
+
+### Refining Requirements
+The previous set of unit tests have one flaw when it comes to validating the app. They test a snapshot of the app's state and do not consider that the app is dynamic.
+When in progress, the app will continually update the step count, and it's important to not spam the user at each step, but insteadonly alert them when a threshold is first crossed. In addition, the user has the option to clear the alert if an earlier alert was cleared by the user.
