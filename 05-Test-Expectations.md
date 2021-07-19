@@ -48,3 +48,7 @@ The ordering check allows for sophisticated tests. eg, you could use this when w
 ### Refining Requirements
 The previous set of unit tests have one flaw when it comes to validating the app. They test a snapshot of the app's state and do not consider that the app is dynamic.
 When in progress, the app will continually update the step count, and it's important to not spam the user at each step, but insteadonly alert them when a threshold is first crossed. In addition, the user has the option to clear the alert if an earlier alert was cleared by the user.
+
+## Using other types of expectations
+The bulk of the time you're testing asynchronous processes, you'll use a regular `XCTestExpectation`. `XCTNSNotificationExpectation` covers most other needs. For specific uses, there are two other stock expectations: `XCTKVOExpectation` nand `XCTNSPredicateExpectation`.
+These look for their eponymous conditions: KVO expectations observe changes to a `keyPath` and predicate expectations wait for their `predicate` to be true.
