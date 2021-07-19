@@ -52,3 +52,7 @@ When in progress, the app will continually update the step count, and it's impor
 ## Using other types of expectations
 The bulk of the time you're testing asynchronous processes, you'll use a regular `XCTestExpectation`. `XCTNSNotificationExpectation` covers most other needs. For specific uses, there are two other stock expectations: `XCTKVOExpectation` nand `XCTNSPredicateExpectation`.
 These look for their eponymous conditions: KVO expectations observe changes to a `keyPath` and predicate expectations wait for their `predicate` to be true.
+
+## Key points
+- Use `XCTestExpectation` and its subclasses to make tests wait for asynchronous process completion.
+- Test expectations help test properties of asynchronicity, like order and number of occurrences, by `XCTAssert` functions should still be used to test state.
