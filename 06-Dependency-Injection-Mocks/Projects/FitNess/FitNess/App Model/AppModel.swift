@@ -14,6 +14,11 @@ class AppModel {
     }
     
     var stateChangedCallback: ((AppModel) -> ())?
+    let pedometer: Pedometer
+    
+    init(pedometer: Pedometer = CMPedometer()) {
+        self.pedometer = pedometer
+    }
     
     // MARK: - App Lifecycle
     func start() throws {
@@ -21,6 +26,7 @@ class AppModel {
             throw AppError.goalNotSet
         }
         appState = .inProgress
+        startPedometer()
     }
     
     func pause() {
@@ -46,5 +52,12 @@ class AppModel {
         }
         
         appState = .completed
+    }
+}
+
+// MARK: - Pedometer
+extension AppModel {
+    func startPedometer() {
+        pedometer.start()
     }
 }
