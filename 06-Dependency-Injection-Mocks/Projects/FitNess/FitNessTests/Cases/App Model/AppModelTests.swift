@@ -232,4 +232,17 @@ class AppModelTests: XCTestCase {
         // then
         wait(for: [exp], timeout: 1)
     }
+    
+    func testAppModel_whenDeniedAuthAfterStart_generatesAlert() {
+        // given
+        givenGoalSet()
+        mockPedometer.error = MockPedometer.notAuthorizedError
+        let exp = expectation(forNotification: AlertNotification.name, object: nil, handler: alertHandler(.notAuthorized))
+        
+        // when
+        try! sut.start()
+        
+        // then
+        wait(for: [exp], timeout: 1)
+    }
 }

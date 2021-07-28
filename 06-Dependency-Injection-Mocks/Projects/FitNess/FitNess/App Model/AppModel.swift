@@ -69,6 +69,11 @@ class AppModel {
 // MARK: - Pedometer
 extension AppModel {
     func startPedometer() {
-        pedometer.start()
+        pedometer.start { error in
+            if let error = error {
+                let alert = error.is(CMErrorMotionActivityNotAuthorized) ? .notAuthorized : Alert(error.localizedDescription)
+                AlertCenter.instance.postAlert(alert: alert)
+            }
+        }
     }
 }
