@@ -14,7 +14,7 @@ class AppModel {
     }
     
     var stateChangedCallback: ((AppModel) -> ())?
-    let pedometer: Pedometer
+    var pedometer: Pedometer
     
     init(pedometer: Pedometer = CMPedometer()) {
         self.pedometer = pedometer
