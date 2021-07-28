@@ -25,6 +25,12 @@ class AppModel {
         guard dataModel.goal != nil else {
             throw AppError.goalNotSet
         }
+        
+        guard pedometer.pedometerAvailable else {
+            AlertCenter.instance.postAlert(alert: .noPedometer)
+            return
+        }
+        
         appState = .inProgress
         startPedometer()
     }

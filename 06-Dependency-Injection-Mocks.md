@@ -8,3 +8,6 @@ The way to isolate the system-under-test and circumvent these issues is to use _
 - __Fake__: Fakes often have logic, but instad of providing real or production data, they provide test data. For example, a fake network manager might read/write from local JSON files instead of connecting over a network.
 - __Mock__: Mocks are used to verify behavior, that is they should have an expectation that a certain method of the mock gets called or that its state was set to an expected value. Mocks are generally expected to provide test values or behaviors.
 - __Partial mock__: While a regular mock is a complete substitution for a production object, a partial mock uses the production code and only overrides part of it to test the expectations. Partial mocks are ususally a subclass or provide a proxy to the production object.
+
+## Handling error conditions
+### Dealing with no pedometer
