@@ -33,6 +33,7 @@
 		0ADA6ADF2228DA9D0058129C /* NessieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADA6ADE2228DA9D0058129C /* NessieTests.swift */; };
 		0AEC71EC21D6EDCD00E836EB /* DataModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC71EB21D6EDCD00E836EB /* DataModel+Tests.swift */; };
 		0AEC71F021D6EE8A00E836EB /* AppModel+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AEC71EF21D6EE8A00E836EB /* AppModel+Tests.swift */; };
+		2F08A3BF26B181F700A0A330 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08A3BE26B181F700A0A330 /* MockData.swift */; };
 		2FAF6DBB26A84A300083EF5D /* Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAF6DBA26A84A300083EF5D /* Pedometer.swift */; };
 		2FAF6DBD26A84A870083EF5D /* CMPedometer+Pedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAF6DBC26A84A870083EF5D /* CMPedometer+Pedometer.swift */; };
 		2FAF6DBF26A84B840083EF5D /* MockPedometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAF6DBE26A84B840083EF5D /* MockPedometer.swift */; };
@@ -80,6 +81,7 @@
 		0ADA6ADE2228DA9D0058129C /* NessieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NessieTests.swift; sourceTree = "<group>"; };
 		0AEC71EB21D6EDCD00E836EB /* DataModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataModel+Tests.swift"; sourceTree = "<group>"; };
 		0AEC71EF21D6EE8A00E836EB /* AppModel+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Tests.swift"; sourceTree = "<group>"; };
+		2F08A3BE26B181F700A0A330 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		2FAF6DBA26A84A300083EF5D /* Pedometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pedometer.swift; sourceTree = "<group>"; };
 		2FAF6DBC26A84A870083EF5D /* CMPedometer+Pedometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMPedometer+Pedometer.swift"; sourceTree = "<group>"; };
 		2FAF6DBE26A84B840083EF5D /* MockPedometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPedometer.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		0A543C0E2210EC8D00E0819E /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				2F08A3BE26B181F700A0A330 /* MockData.swift */,
 				2FAF6DBE26A84B840083EF5D /* MockPedometer.swift */,
 			);
 			path = Mocks;
@@ -445,6 +448,7 @@
 				2FAF6DBF26A84B840083EF5D /* MockPedometer.swift in Sources */,
 				0ABD6B00220B9A0D0058B7E8 /* AlertViewControllerTests.swift in Sources */,
 				0A8299E922011775002AFFAF /* AlertCenterTests.swift in Sources */,
+				2F08A3BF26B181F700A0A330 /* MockData.swift in Sources */,
 				0A80ED3F21CB2F93000B04E3 /* DataModelTests.swift in Sources */,
 				0ADA6ADF2228DA9D0058129C /* NessieTests.swift in Sources */,
 				0AD694D92209C89D00387553 /* Notification+Tests.swift in Sources */,

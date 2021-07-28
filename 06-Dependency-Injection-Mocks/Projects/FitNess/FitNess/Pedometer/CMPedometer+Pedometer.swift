@@ -11,9 +11,24 @@ extension CMPedometer: Pedometer {
         CMPedometer.authorizationStatus() == .denied
     }
     
-    func start(completion: @escaping (Error?) -> Void) {
+    func start(dataUpdates: @escaping (PedometerData?, Error?) -> Void, eventUpdates: @escaping (Error?) -> Void) {
+        
         startEventUpdates { event, error in
-            completion(error)
+            eventUpdates(error)
         }
+        
+        startUpdates(from: Date()) { data, error in
+            dataUpdates(data, error)
+        }
+    }
+}
+
+extension CMPedometerData: PedometerData {
+    var steps: Int {
+        numberOfSteps.intValue
+    }
+    
+    var distanceTravelled: Double {
+        distance?.doubleValue ?? 0
     }
 }

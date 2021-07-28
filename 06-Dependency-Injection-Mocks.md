@@ -16,3 +16,6 @@ You’ll have to add functionality to detect that the pedometer is not available
 The other error state that needs to be handled is when the user declines the permission pop-up
 ### Mocking a callback
 There is another important error situation to handle. This occurs the very first time the user taps __Start__ on a pedometer-capable device. In that case, the start flow goes ahead, but the user can decline in the permission pop-up. If the user declines, there is an error in the `eventUpdates` callback
+
+## Getting actual data
+The incoming data is the most important part of the app, and it’s crucial to have it properly mocked. The actual step and distance count are provided by `CMPedometer` through the aptly named `CMPedometerData` object. This too should be abstracted between the app and Core Motion.

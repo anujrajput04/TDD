@@ -245,4 +245,17 @@ class AppModelTests: XCTestCase {
         // then
         wait(for: [exp], timeout: 1)
     }
+    
+    func testModel_whenPedometerUpdates_updatesDataModel() {
+        // given
+        givenInProgress()
+        let data = MockData(steps: 100, distanceTravelled: 10)
+        
+        // when
+        mockPedometer.sendData(data)
+        
+        // then
+        XCTAssertEqual(sut.dataModel.steps, 100)
+        XCTAssertEqual(sut.dataModel.distance, 10)
+    }
 }
