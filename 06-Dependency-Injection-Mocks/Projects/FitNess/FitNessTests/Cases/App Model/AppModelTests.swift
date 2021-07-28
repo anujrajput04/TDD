@@ -207,4 +207,29 @@ class AppModelTests: XCTestCase {
         // then
         wait(for: [exp], timeout: 1)
     }
+    
+    func testPedometerNotAuthorized_whenStarted_doesNotStart() {
+        // given
+        givenGoalSet()
+        mockPedometer.permissionDeclined = true
+        
+        // when
+        try! sut.start()
+        
+        // then
+        XCTAssertEqual(sut.appState, .notStarted)
+    }
+    
+    func testPedometerNotAuthorized_whenStarted_generatesAlert() {
+        // given
+        givenGoalSet()
+        mockPedometer.permissionDeclined = true
+        let exp = expectation(forNotification: AlertNotification.name, object: nil, handler: alertHandler(.notAuthorized))
+        
+        // when
+        try! sut.start()
+        
+        // then
+        wait(for: [exp], timeout: 1)
+    }
 }

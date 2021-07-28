@@ -4,6 +4,7 @@ import CoreMotion
 class MockPedometer: Pedometer {
     private(set) var started: Bool = false
     var pedometerAvailable: Bool = true
+    var permissionDeclined: Bool = false
     
     func start() {
         started = true
