@@ -19,3 +19,7 @@ There is another important error situation to handle. This occurs the very first
 
 ## Getting actual data
 The incoming data is the most important part of the app, and it’s crucial to have it properly mocked. The actual step and distance count are provided by `CMPedometer` through the aptly named `CMPedometerData` object. This too should be abstracted between the app and Core Motion.
+
+## Making a functional fake
+The unit tests are useful for verifying logic but are bad at veifying you're building a good user experience. One way to do that is to build and run on a device, but that will require you to walk around to complete the goal. It is very time and energy consuming.
+The better way is to use a fake pedometer. To simulate the real time scenario we build a fake pedometer that speeds up time or makes up movement. 

@@ -16,7 +16,15 @@ class AppModel {
     var stateChangedCallback: ((AppModel) -> ())?
     var pedometer: Pedometer
     
-    init(pedometer: Pedometer = CMPedometer()) {
+    static var pedometerFactory: (() -> Pedometer) = {
+        #if targetEnvironment(simulator)
+        return SimulatorPedometer()
+        #else
+        return CMPedometer()
+        #endif
+    }
+    
+    init(pedometer: Pedometer = pedometerFactory()) {
         self.pedometer = pedometer
     }
     
