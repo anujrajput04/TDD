@@ -17,6 +17,7 @@ class Nessie {
     }
     
     @objc func incrementDistance() {
+        distance += velocity
     }
     
     deinit {
