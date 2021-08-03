@@ -3,8 +3,8 @@ import Foundation
 class SimulatorPedometer: Pedometer {
     
     struct Data: PedometerData {
-        var steps: Int
-        var distanceTravelled: Double
+        let steps: Int
+        let distanceTravelled: Double
     }
     
     var pedometerAvailable: Bool = true
@@ -27,8 +27,7 @@ class SimulatorPedometer: Pedometer {
             let data = Data(steps: 10, distanceTravelled: self.distance)
             self.dataBlock?(data, nil)
         })
-        
-        RunLoop.main.add(timer!, forMode: .default)
+        RunLoop.main.add(timer!, forMode: RunLoop.Mode.default)
         updateBlock?(nil)
     }
     

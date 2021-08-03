@@ -2,13 +2,13 @@ import CoreMotion
 
 extension CMPedometer: Pedometer {
     var pedometerAvailable: Bool {
-        CMPedometer.isStepCountingAvailable() &&
+        return CMPedometer.isStepCountingAvailable() &&
         CMPedometer.isDistanceAvailable() &&
         CMPedometer.authorizationStatus() != .restricted
     }
     
     var permissionDeclined: Bool {
-        CMPedometer.authorizationStatus() == .denied
+        return CMPedometer.authorizationStatus() == .denied
     }
     
     func start(dataUpdates: @escaping (PedometerData?, Error?) -> Void, eventUpdates: @escaping (Error?) -> Void) {
@@ -25,10 +25,10 @@ extension CMPedometer: Pedometer {
 
 extension CMPedometerData: PedometerData {
     var steps: Int {
-        numberOfSteps.intValue
+        return numberOfSteps.intValue
     }
     
     var distanceTravelled: Double {
-        distance?.doubleValue ?? 0
+        return distance?.doubleValue ?? 0
     }
 }

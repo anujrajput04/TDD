@@ -23,3 +23,9 @@ The incoming data is the most important part of the app, and it’s crucial to h
 ## Making a functional fake
 The unit tests are useful for verifying logic but are bad at veifying you're building a good user experience. One way to do that is to build and run on a device, but that will require you to walk around to complete the goal. It is very time and energy consuming.
 The better way is to use a fake pedometer. To simulate the real time scenario we build a fake pedometer that speeds up time or makes up movement. 
+
+## Key points
+- __Test doubles__ let you test code in isolation from other systems, especially those that are part of system SDKs, rely on networking or timers.
+- __Mocks__ let you swap in a test implementation of a class, and partial mocks let you just substitute part of a class.
+- __Fakes__ let you supply data for testing or use in Simulator.
+

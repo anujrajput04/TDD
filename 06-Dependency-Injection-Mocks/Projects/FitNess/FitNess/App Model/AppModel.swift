@@ -4,8 +4,17 @@ import CoreMotion
 class AppModel {
     
     static let instance = AppModel()
+    static var pedometerFactory: (() -> Pedometer) = {
+#if targetEnvironment(simulator)
+        return SimulatorPedometer()
+#else
+        return CMPedometer()
+#endif
+    }
     
     let dataModel = DataModel()
+    
+    var pedometer: Pedometer
     
     private(set) var appState: AppState = .notStarted {
         didSet {
@@ -14,15 +23,6 @@ class AppModel {
     }
     
     var stateChangedCallback: ((AppModel) -> ())?
-    var pedometer: Pedometer
-    
-    static var pedometerFactory: (() -> Pedometer) = {
-        #if targetEnvironment(simulator)
-        return SimulatorPedometer()
-        #else
-        return CMPedometer()
-        #endif
-    }
     
     init(pedometer: Pedometer = pedometerFactory()) {
         self.pedometer = pedometer
@@ -46,10 +46,12 @@ class AppModel {
         
         appState = .inProgress
         startPedometer()
+        dataModel.nessie.startSwimming()
     }
     
     func pause() {
         appState = .paused
+        dataModel.nessie.stopSwimming()
     }
     
     func restart() {
