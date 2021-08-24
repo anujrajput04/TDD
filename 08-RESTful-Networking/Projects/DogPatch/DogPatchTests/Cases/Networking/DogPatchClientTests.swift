@@ -77,7 +77,7 @@ class DogPatchClientTests: XCTestCase {
         XCTAssertNil(result.dogs)
         XCTAssertNil(result.error)
     }
-    
+     
     func test_getDogs_givenError_callsCompletionWithError() throws {
         // given
         let expectedError = NSError(domain: "com.DogPatchTests",
@@ -92,6 +92,47 @@ class DogPatchClientTests: XCTestCase {
         
         let actualError = try XCTUnwrap(result.error as NSError?)
         XCTAssertEqual(actualError, expectedError)  
+    }
+    
+    func test_getDogs_givenValidJSON_callsCompletionWithDogs() throws {
+        // given
+        let data = try Data.fromJSON(fileName: "GET_Dogs_Response")
+        
+        let decoder = JSONDecoder()
+        let dogs = try decoder.decode([Dog].self, from: data)
+        
+        // when
+        let result = whenGetDogs(data: data)
+        
+        // then
+        XCTAssertTrue(result.calledCompletion)
+        XCTAssertEqual(result.dogs, dogs)
+        XCTAssertNil(result.error)
+    }
+    
+    func test_getDogs_givenInvalidJSON_callsCompletionWithError() throws {
+        // given
+        let data = try Data.fromJSON(fileName: "GET_Dogs_MissingValuesResponse")
+        
+        var expectedError: NSError!
+        let decoder = JSONDecoder()
+        
+        do {
+            _ = try decoder.decode([Dog].self, from: data)
+        } catch {
+            expectedError = error as NSError
+        }
+        
+        // when
+        let result = whenGetDogs(data: data)
+        
+        // then
+        XCTAssertTrue(result.calledCompletion)
+        XCTAssertNil(result.dogs)
+        
+        let actualError = try XCTUnwrap(result.error as NSError?)
+        XCTAssertEqual(actualError.domain, expectedError.domain)
+        XCTAssertEqual(actualError.code, expectedError.code)
     }
 }
 
