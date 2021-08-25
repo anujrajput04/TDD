@@ -23,6 +23,36 @@ class DogPatchClientTests: XCTestCase {
         try? super.tearDownWithError()
     }
     
+    func verifyGetDogsDispatchedToMain(data: Data? = nil,
+                                       statusCode: Int = 200,
+                                       error: Error? = nil,
+                                       line: UInt = #line) {
+        mockSession.givenDispatchQueue()
+        sut = DogPatchClient(baseURL: baseURL,
+                             session: mockSession,
+                             responseQueue: .main)
+        
+        let expectation = self.expectation(description: "Completion wasn't called")
+        
+        // when
+        var thread: Thread!
+        let mockTask = sut.getDogs { (dogs, error) in
+            thread = Thread.current
+            expectation.fulfill()
+        } as! MockURLSessionDataTask
+        
+        let response = HTTPURLResponse(url: getDogsURL,
+                                       statusCode: statusCode,
+                                       httpVersion: nil,
+                                       headerFields: nil)
+        mockTask.completionHandler(data, response, error)
+        
+        // then
+        waitForExpectations(timeout: 0.2) { (_) in
+            XCTAssertTrue(thread.isMainThread, line: line)
+        }
+    }
+    
     func whenGetDogs(data: Data? = nil,
                      statusCode: Int = 200,
                      error: Error? = nil) ->
@@ -146,6 +176,34 @@ class DogPatchClientTests: XCTestCase {
         let actualError = try XCTUnwrap(result.error as NSError?)
         XCTAssertEqual(actualError.domain, expectedError.domain)
         XCTAssertEqual(actualError.code, expectedError.code)
+    }
+    
+    func test_getDogs_givenHTTPStatusError_dispatchesToResponseQueue() {
+        verifyGetDogsDispatchedToMain(statusCode: 500)
+    }
+    
+    func test_getDogs_givenError_dispatchesToResponseQueue() {
+        // given
+        let error = NSError(domain: "com.DogPatchTests", code: 42)
+
+        // then
+        verifyGetDogsDispatchedToMain(error: error)
+    }
+    
+    func test_getDogs_givenGoodResponse_dispatchesToResponseQueue() throws {
+        // given
+        let data = try Data.fromJSON(fileName: "GET_Dogs_Response")
+        
+        // then
+        verifyGetDogsDispatchedToMain(data: data)
+    }
+    
+    func test_getDogs_givenInvalidResponse_dispatchesToResponseQueue() throws {
+        // given
+        let data = try Data.fromJSON(fileName: "GET_Dogs_MissingValuesResponse")
+        
+        // then
+        verifyGetDogsDispatchedToMain(data: data)
     }
 }
 
