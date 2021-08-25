@@ -151,8 +151,15 @@ class DogPatchClientTests: XCTestCase {
 
 /// Create a `MockURLSession` as subclass of `URLSession` and override `dataTask(with url:, completionHandler:)` to return a `MockURLSessionDataTask`
 class MockURLSession: URLSession {
+    
+    var queue: DispatchQueue? = nil
+    
+    func givenDispatchQueue() {
+        queue = DispatchQueue(label: "com.DogPatchTests.MockSession")
+    }
+    
     override func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        return MockURLSessionDataTask(completionHandler: completionHandler, url: url)
+        return MockURLSessionDataTask(completionHandler: completionHandler, url: url, queue: queue)
     }
 }
 
@@ -161,8 +168,19 @@ class MockURLSessionDataTask: URLSessionDataTask {
     var completionHandler: (Data?, URLResponse?, Error?)  -> Void
     var url: URL
     
-    init(completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void, url: URL) {
-        self.completionHandler = completionHandler
+    init(completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void,
+         url: URL,
+         queue: DispatchQueue?) {
+        if let queue = queue {
+            self.completionHandler = { data, response, error in
+                queue.async() {
+                    completionHandler(data, response, error)
+                }
+            }
+        } else {
+            self.completionHandler = completionHandler
+        }
+        
         self.url = url
         super.init()
     }
