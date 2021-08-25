@@ -3,10 +3,12 @@ import Foundation
 class DogPatchClient {
     let baseURL: URL
     let session: URLSession
+    let responseQueue: DispatchQueue?
     
-    init(baseURL: URL, session: URLSession) {
+    init(baseURL: URL, session: URLSession, responseQueue: DispatchQueue?) {
         self.baseURL = baseURL
         self.session = session
+        self.responseQueue = responseQueue
     }
     
     func getDogs(completion: @escaping ([Dog]?, Error?) -> Void) -> URLSessionDataTask {

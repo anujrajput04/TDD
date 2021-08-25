@@ -13,7 +13,7 @@ class DogPatchClientTests: XCTestCase {
         try? super.setUpWithError()
         baseURL = URL(string: "https://example.com/api/v1/")!
         mockSession = MockURLSession()
-        sut = DogPatchClient(baseURL: baseURL, session: mockSession)
+        sut = DogPatchClient(baseURL: baseURL, session: mockSession, responseQueue: nil)
     }
 
     override func tearDownWithError() throws {
@@ -50,6 +50,19 @@ class DogPatchClientTests: XCTestCase {
 
     func test_init_sets_session() {
         XCTAssertEqual(sut.session, mockSession)
+    }
+    
+    func test_init_sets_responseQueue() {
+        // given
+        let responseQueue = DispatchQueue.main
+        
+        // when
+        sut = DogPatchClient(baseURL: baseURL,
+                             session: mockSession,
+                             responseQueue: responseQueue)
+        
+        // then
+        XCTAssertEqual(sut.responseQueue, responseQueue)
     }
     
     func test_getsDogs_callsExpectedURL() {
