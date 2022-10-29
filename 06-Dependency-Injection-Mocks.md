@@ -28,4 +28,4 @@ The better way is to use a fake pedometer. To simulate the real time scenario we
 - __Test doubles__ let you test code in isolation from other systems, especially those that are part of system SDKs, rely on networking or timers.
 - __Mocks__ let you swap in a test implementation of a class, and partial mocks let you just substitute part of a class.
 - __Fakes__ let you supply data for testing or use in Simulator.
-
+- __Stubs__ let you provide canned responses for requests quickly.
