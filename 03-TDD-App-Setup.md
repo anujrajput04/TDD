@@ -16,6 +16,8 @@ The name of the game in TDD is __red, green, refactor__. This means iteratively 
 4. Repeat rhe process until all the logic cases are covered.
 
 ### Writing a red test
+The first step is to write a test which will definitely fail either due to logic which has not been written already or has a syntactical issue. This ensures that whateer test case comes up there is a failing test to start with. This red test needs to pass in the next step.
+
 ### Making the test green
 Although, application targets aren't frameworks, they are modules, and test targets have the ability to import them as if it were a framework. Like frameworks, they have to be imported in each Swift file, so the compiler is aware of what the app contains.
 
