@@ -10,3 +10,4 @@ This is called the TDD cycle. It ensures you throughly and accurately test your 
 
 ## Why should you use TDD?
 
+TDD promotes good quality of code and overall better software engineering. Tests is how other engineering disciplines also ensure quality of their products. TDD eliminates regressions and defects
